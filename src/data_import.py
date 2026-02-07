@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import time
 
 # makeup api provides data on many makeup items. Including details such as product type, price, and available colours.
 def get_makeup_data():
@@ -8,19 +9,20 @@ def get_makeup_data():
     
     try:
         # make request
-        print("Making API request")
+        #print(time.strftime('%l:%M%p %Z on %b %d, %Y'))
+        print(time.strftime('%x %X') + " - Making API request")
         response = requests.get(endpoint)
         
         # check if request was successful (200 OK status code)
         if response.status_code == 200:
-            print("Request successful")
+            print(time.strftime('%x %X') + " - Request successful")
             makeup_items = response.json()
             return makeup_items
         else:
-            print("Error: ", response.status_code)
+            print(time.strftime('%x %X') + " - Error: ", response.status_code)
     
     except requests.exceptions.RequestException as e:
-        print("Error: ", e)
+        print(time.strftime('%x %X') + " - Error: ", e)
         
 def main():
 
@@ -29,7 +31,7 @@ def main():
     if posts:
         df = pd.json_normalize(posts)
         df.to_csv('data/raw/makeup.csv', encoding='utf-8', index=False)
-        print("Makeup data written to CSV")
+        print(time.strftime('%x %X') + " - Makeup data written to CSV")
 
 if __name__ == '__main__':
     main()
