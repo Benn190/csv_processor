@@ -55,5 +55,5 @@ def main():
     else:
         print(time.strftime('%x %X') + " - Error: No makeup data found")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
