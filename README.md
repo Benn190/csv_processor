@@ -17,6 +17,7 @@ The validated data is then fed through a summariser script called ``summary.py``
 The summary and cleaned version of the CSV file are exported to ``data/processed``.
 
 Logs and errors ==TODO==
+All logs and errors begin with a timestamp. ==logs and error go to a file??==
 
 ## example output
 

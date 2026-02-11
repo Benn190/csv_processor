@@ -1,7 +1,8 @@
 import requests
 import pandas as pd
 import time
-import json
+import os 
+import shutil
 
 # makeup api provides data on many makeup items. Including details such as product type, price, and available colours.
 def get_makeup_data():
@@ -24,20 +25,36 @@ def get_makeup_data():
     
     except requests.exceptions.RequestException as e:
         print(time.strftime('%x %X') + " - Error: ", e)
+     
+def clear_raw_data():
+    dir = "data/raw"
+    files = os.listdir(dir)
+    for f in files:
+        f_path = os.path.join(dir, f)
+        if os.path.isfile(f_path):
+            os.remove(f_path)
         
 def main():
 
-    posts = get_makeup_data()
+    print(time.strftime('%x %X') + " - Removing existing data from data/raw")
+    clear_raw_data()
+
+    makeup_data = get_makeup_data()
     
-    if posts:
+    if makeup_data:
         
         # format json from API as a pandas dataframe
-        df = pd.json_normalize(posts)
+        df = pd.json_normalize(makeup_data)
         print(time.strftime('%x %X') + " - Converting API JSON response to pandas dataframe")
         
+        file_path = "data/raw/makeup.csv"
+        
         # convert dataframe and save as csv
-        df.to_csv('data/raw/makeup.csv', encoding='utf-8', index=False)
-        print(time.strftime('%x %X') + " - Makeup data written to CSV")
+        df.to_csv(file_path, encoding="utf-8", index=False)
+        print(time.strftime('%x %X') + " - Makeup data written to CSV: " + file_path)
+        
+    else:
+        print(time.strftime('%x %X') + " - Error: No makeup data found")
 
 if __name__ == '__main__':
     main()
