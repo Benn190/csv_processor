@@ -19,10 +19,13 @@ The summary and cleaned version of the CSV file are exported to ``data/processed
 Logs and errors ==TODO==
 All logs and errors begin with a timestamp. ==logs and error go to a file??==
 
-## example output
+## Example Output
 
-## how to run
+For an example run, the script uses data from a makeup data API: https://makeup-api.herokuapp.com/
+The data import script uses the https://makeup-api.herokuapp.com/api/v1/products.json endpoint.
 
-## tech stack
+## How to Run
+
+## Tech Stack
 
 ## customisation notes

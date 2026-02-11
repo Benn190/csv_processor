@@ -2,7 +2,6 @@ import requests
 import pandas as pd
 import time
 import os 
-import shutil
 
 # makeup api provides data on many makeup items. Including details such as product type, price, and available colours.
 def get_makeup_data():
