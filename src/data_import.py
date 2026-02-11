@@ -31,10 +31,6 @@ def main():
     
     if posts:
         
-        print(time.strftime('%x %X') + " - Writing JSON Makeup data to .json file")
-        with open('data/raw/makeup.json', 'w') as f:
-            json.dump(posts, f)
-        
         # format json from API as a pandas dataframe
         df = pd.json_normalize(posts)
         print(time.strftime('%x %X') + " - Converting API JSON response to pandas dataframe")
